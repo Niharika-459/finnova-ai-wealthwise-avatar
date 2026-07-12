@@ -1,15 +1,41 @@
-node_modules/
+# ===========================
+# Environment Files
+# ===========================
 .env
+frontend/.env
+backend/.env
 
+# ===========================
+# Node Modules
+# ===========================
+node_modules/
+frontend/node_modules/
+
+# ===========================
+# Build Output
+# ===========================
 dist/
 build/
-
 coverage/
 
-.vscode/
+# ===========================
+# AWS SAM Build Files
+# ===========================
+backend/.aws-sam/
 
+# ===========================
+# IDE Files
+# ===========================
+.vscode/
 .idea/
 
-.DS_Store
-
+# ===========================
+# Logs
+# ===========================
 *.log
+
+# ===========================
+# OS Files
+# ===========================
+.DS_Store
+Thumbs.db
