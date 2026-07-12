@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: WealthWise Avatar Backend
+Globals:
+  Function:
+    Runtime: python3.13
+    Timeout: 60
+    MemorySize: 128
+Resources:
+  WealthWiseApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowMethods: '''GET,POST,OPTIONS'''
+        AllowHeaders: '''Content-Type'''
+        AllowOrigin: '''*'''
+  DashboardFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: functions/dashboard.lambda_handler
+      CodeUri: DashboardFunction
+      Events:
+        DashboardApi:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: WealthWiseApi
+            Path: /dashboard
+            Method: GET
+    Metadata:
+      SamResourceId: DashboardFunction
+  AvatarFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: functions/avatar.lambda_handler
+      CodeUri: AvatarFunction
+      Policies:
+      - Statement:
+        - Effect: Allow
+          Action:
+          - bedrock:InvokeModel
+          - bedrock:InvokeModelWithResponseStream
+          Resource:
+          - '*'
+      Events:
+        AvatarApi:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: WealthWiseApi
+            Path: /avatar
+            Method: POST
+    Metadata:
+      SamResourceId: AvatarFunction

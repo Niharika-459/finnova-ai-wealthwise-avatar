@@ -1,0 +1,65 @@
+.dashboard{
+
+    width:100%;
+
+}
+
+.greeting{
+
+    margin-bottom:25px;
+
+    color:#003366;
+
+}
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+.dashboard-bottom{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+}
+
+.goals-section{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.goals-section h2{
+
+    margin-bottom:20px;
+
+    color:#003366;
+
+}
+
+@media(max-width:900px){
+
+.dashboard-bottom{
+
+grid-template-columns:1fr;
+
+}
+
+}

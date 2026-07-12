@@ -1,0 +1,63 @@
+.privacy-page{
+
+max-width:750px;
+
+margin:auto;
+
+}
+
+.privacy-page h1{
+
+margin-bottom:25px;
+
+color:#003366;
+
+}
+
+.privacy-card{
+
+background:white;
+
+padding:30px;
+
+border-radius:18px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.privacy-card label{
+
+font-size:18px;
+
+}
+
+.privacy-card input{
+
+margin-right:10px;
+
+}
+
+.privacy-card button{
+
+margin-top:20px;
+
+padding:14px;
+
+background:#003366;
+
+color:white;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}

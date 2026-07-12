@@ -1,0 +1,22 @@
+.health-card{
+
+    background:#003366;
+    color:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    margin-bottom:30px;
+
+}
+
+.score{
+
+    font-size:42px;
+
+    margin-top:20px;
+
+    font-weight:bold;
+
+}

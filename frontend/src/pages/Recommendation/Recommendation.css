@@ -1,0 +1,57 @@
+.recommendation-page{
+
+max-width:850px;
+
+margin:auto;
+
+}
+
+.recommendation-page h1{
+
+color:#003366;
+
+margin-bottom:25px;
+
+}
+
+.recommendation-card{
+
+background:white;
+
+padding:30px;
+
+border-radius:18px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.portfolio{
+
+margin:25px 0;
+
+}
+
+.item{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:12px 0;
+
+border-bottom:1px solid #eee;
+
+}
+
+.item strong{
+
+color:#003366;
+
+}
+
+.recommendation-card p{
+
+margin-top:15px;
+
+}
