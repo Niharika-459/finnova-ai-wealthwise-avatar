@@ -3,21 +3,20 @@ import Layout from "../../components/layout/Layout";
 import "./Privacy.css";
 
 export default function Privacy() {
-
   const [salary, setSalary] = useState(true);
   const [investment, setInvestment] = useState(true);
   const [upi, setUpi] = useState(false);
 
+  const handleSave = () => {
+    alert("✅ Preferences saved successfully!");
+  };
+
   return (
-
     <Layout>
-
       <div className="privacy-page">
-
         <h1>🔒 Privacy & Consent</h1>
 
         <div className="privacy-card">
-
           <h2>Choose Data to Share with AI</h2>
 
           <label>
@@ -47,16 +46,11 @@ export default function Privacy() {
             UPI Transactions
           </label>
 
-          <button>
+          <button onClick={handleSave}>
             Save Preferences
           </button>
-
         </div>
-
       </div>
-
     </Layout>
-
   );
-
 }

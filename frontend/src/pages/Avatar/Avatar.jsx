@@ -41,11 +41,23 @@ export default function Avatar() {
         }
 
         setResponse(
-          `${greeting}, ${data.user} 👋\n\nSelect one of the options above or ask your own financial question to receive AI-powered guidance.`
+          `${greeting}, ${data.user} 👋
+
+I'm your AI Wealth Advisor.
+
+You can ask me about:
+
+• Investments
+• Savings
+• Retirement
+• Tax Planning
+• Budgeting
+
+Or click one of the suggestions above.`
         );
       })
       .catch((err) => {
-        console.error("Failed to load dashboard profile:", err);
+        console.error(err);
 
         setResponse(
           "Unable to load your financial profile. Please refresh the page."
@@ -54,16 +66,16 @@ export default function Avatar() {
   }, []);
 
   async function askAvatar(userQuestion) {
+    if (!userQuestion.trim()) return;
+
     if (!profile) {
       setResponse(
-        "Loading your financial profile. Please wait a moment and try again."
+        "Loading your financial profile. Please wait a few seconds."
       );
       return;
     }
 
-    if (!userQuestion.trim()) return;
-
-    setResponse("Thinking...");
+    setResponse("🤖 Thinking...");
 
     try {
       const res = await fetch(
@@ -75,13 +87,13 @@ export default function Avatar() {
           },
           body: JSON.stringify({
             message: userQuestion,
-            profile: profile,
+            profile,
           }),
         }
       );
 
       if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
+        throw new Error("Failed to contact AI.");
       }
 
       const data = await res.json();
@@ -91,10 +103,17 @@ export default function Avatar() {
       console.error(error);
 
       setResponse(
-        "Unable to contact the AI service. Please try again after a few moments."
+        "Unable to contact the AI service. Please try again later."
       );
     }
   }
+
+  const handleSend = () => {
+    if (!question.trim()) return;
+
+    askAvatar(question);
+    setQuestion("");
+  };
 
   return (
     <Layout>
@@ -131,7 +150,9 @@ export default function Avatar() {
 
           <div
             className="action-card"
-            onClick={() => askAvatar("How can I improve my savings?")}
+            onClick={() =>
+              askAvatar("How can I improve my savings?")
+            }
           >
             <PiggyBank size={28} />
             <span>Improve my savings</span>
@@ -152,7 +173,10 @@ export default function Avatar() {
 
             <div className="bubble">
               <strong>WealthWise Avatar</strong>
-              <p style={{ whiteSpace: "pre-line" }}>{response}</p>
+
+              <p style={{ whiteSpace: "pre-line" }}>
+                {response}
+              </p>
             </div>
           </div>
         </div>
@@ -165,10 +189,7 @@ export default function Avatar() {
             onChange={(e) => setQuestion(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                if (question.trim() !== "") {
-                  askAvatar(question);
-                  setQuestion("");
-                }
+                handleSend();
               }
             }}
           />
@@ -179,12 +200,7 @@ export default function Avatar() {
 
           <button
             type="button"
-            onClick={() => {
-              if (question.trim() !== "") {
-                askAvatar(question);
-                setQuestion("");
-              }
-            }}
+            onClick={handleSend}
           >
             <Send size={18} />
           </button>

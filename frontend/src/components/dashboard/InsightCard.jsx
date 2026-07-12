@@ -1,23 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import "./InsightCard.css";
 
 export default function InsightCard({ insight }) {
+  const navigate = useNavigate();
 
-    return(
+  return (
+    <div className="insight-card">
+      <h2>AI Insight</h2>
 
-        <div className="insight-card">
+      <p>{insight}</p>
 
-            <h2>AI Insight</h2>
-
-            <p>{insight}</p>
-
-            <button>
-
-                Chat with WealthWise
-
-            </button>
-
-        </div>
-
-    )
-
+      <button onClick={() => navigate("/avatar")}>
+        Chat with WealthWise →
+      </button>
+    </div>
+  );
 }
